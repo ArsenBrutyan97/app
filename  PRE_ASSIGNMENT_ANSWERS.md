@@ -1,0 +1,4 @@
+1. Ensuring that the fetched repository and commit data is accurate and consistent is crucial for the reliability of the application. Properly handling errors and edge cases, such as network failures, invalid user input, or unexpected API responses
+2. The current design serves its purpose for testing, but for a real project, we would enhance both the search bar functionality and the overall layout.
+3. Enable users to compare commit activity across multiple repositories simultaneously, allowing them to analyze trends, identify patterns, and make informed decisions about project priorities, resource allocation, and development strategies. Introduce issue tracking and management capabilities to track bugs, feature requests, and other tasks associated with repositories.
+4. While I don't have any specific clarifying questions at the moment, I'll proceed based on some assumptions to guide the implementation process effectively. 

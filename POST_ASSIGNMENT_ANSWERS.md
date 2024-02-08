@@ -1,0 +1,6 @@
+1. Implemented the Atomic Design methodology to structure the components efficiently. For the build process and optimization, opted for Webpack due to its robust capabilities in bundling assets and optimizing the project's performance.
+2. Coding - 7 hours, debugging - 1 hour
+3. It seems that everything has gone smoothly so far, and there's no specific advice needed at this point.
+4. With each project, there's always an opportunity to learn and grow. We continuously refine our skills, gather new insights, and improve our abilities, which ultimately enhances our effectiveness and efficiency in future endeavors.
+5. Not all aspects of my capabilities were fully represented. However, I was able to demonstrate proficiency in certain areas relevant to the project requirements.
+6. Yes, there are indeed several significant web development-related skills that could have been further demonstrated in this exercise. Some of these include:Authentication and Authorization, Performance Optimization, Bundle Analyzer, Lazy Loading, Advanced Testing Strategies
