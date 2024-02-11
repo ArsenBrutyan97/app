@@ -4,6 +4,7 @@ import * as actionsTypes from 'store/actions/actionTypes';
 import { loadCommits, loadRepositories } from 'store/actions';
 import { requestHeaders } from 'store/utils';
 import { BASE_URL, PER_PAGE } from 'utils/constants';
+import { IInfos } from 'store/types';
 
 export const initEpics: Epic[] = [
     (action$) =>
@@ -12,28 +13,28 @@ export const initEpics: Epic[] = [
             mergeMap(async () => {
                 try {
                     const orgs = (
-                        await fetch(
-                            `${BASE_URL}/search/users?q=type:org`,
-                            {
-                                method: 'GET',
-                                ...requestHeaders()
-                            }
-                        ).then((res) => res.json())
-                    ).items.map((item: any) => item.login);
+                        await fetch(`${BASE_URL}/search/users?q=type:org`, {
+                            method: 'GET',
+                            ...requestHeaders(),
+                        }).then((res) => res.json())
+                    ).items.map((item: IInfos) => item.login);
 
-                    return [].concat.apply([], (
-                        await Promise.all(
-                            orgs.map((org: string) =>
-                                fetch(
-                                    `${BASE_URL}/orgs/${org}/repos?per_page=${PER_PAGE}`,
-                                    {
-                                        method: 'GET',
-                                        ...requestHeaders()
-                                    }
-                                ).then((res) => res.json())
+                    return [].concat.apply(
+                        [],
+                        (
+                            await Promise.all(
+                                orgs.map((org: string) =>
+                                    fetch(
+                                        `${BASE_URL}/orgs/${org}/repos?per_page=${PER_PAGE}`,
+                                        {
+                                            method: 'GET',
+                                            ...requestHeaders(),
+                                        },
+                                    ).then((res) => res.json()),
+                                ),
                             )
-                        )
-                    ).filter((res) => Array.isArray(res)));
+                        ).filter((res) => Array.isArray(res)),
+                    );
                 } catch (err) {
                     return err;
                 }

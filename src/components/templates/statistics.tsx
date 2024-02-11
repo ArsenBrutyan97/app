@@ -1,72 +1,41 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
-import { Line } from 'react-chartjs-2';
 import { countDatesByWeeks } from 'utils/helpers';
 import { CategoryScale } from 'chart.js';
-import { DateSelector } from '@/store/selectors';
+import { SelectedRepositoriesSelector, DateSelector } from '@/store/selectors';
 import { GraphsWrapperStyled } from './styled';
+import { LineChart } from '@mui/x-charts/LineChart';
+import { COLORS } from 'utils/constants';
 
 Chart.register(CategoryScale);
 
 export const Statistics = () => {
+    const selectedRepos = useSelector(SelectedRepositoriesSelector);
     const dates = useSelector(DateSelector);
 
     const weeks = useMemo(
-        () => countDatesByWeeks(dates.map((date) => new Date(date))),
+        () =>
+            dates.map((date) =>
+                countDatesByWeeks(date.map((d) => new Date(d))),
+            ),
         [dates],
     );
 
-    console.log(weeks, '/////');
-
     return (
         <GraphsWrapperStyled>
-            <Line
-                data={{
-                    labels: dates.length ? weeks : [],
-                    datasets: [
-                        {
-                            label: 'Commits',
-                            data: dates.length ? weeks : [],
-                            borderColor: '#4CCA8D',
-                            tension: 0.4,
-                        },
-                    ],
-                }}
-                options={{
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Y: Commits, X: Weeks',
-                        },
-                        legend: {
-                            display: false,
-                        },
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false,
-                            },
-                        },
-                        y: {
-                            grid: {
-                                display: false,
-                            },
-                        },
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            top: 5,
-                            left: 15,
-                            right: 15,
-                            bottom: 15,
-                        },
-                    },
-                }}
-            />
+            {weeks.length > 0 && (
+                <LineChart
+                    colors={COLORS}
+                    xAxis={weeks.map((week) => ({
+                        data: week.map((_, key) => key),
+                    }))}
+                    series={weeks.map((week, key) => ({
+                        label: selectedRepos[key].full_name,
+                        data: week,
+                    }))}
+                />
+            )}
         </GraphsWrapperStyled>
     );
 };

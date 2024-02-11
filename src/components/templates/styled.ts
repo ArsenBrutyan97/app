@@ -36,12 +36,20 @@ export const InitialTextStyled = styled.p`
     line-height: 24px;
 `;
 
+export const ReposWrapperStyled = styled.div`
+    overflow-y: auto;
+    padding-right: 8px;
+`;
+
 export const RepoWrapperStyled = styled.div`
     width: 100%;
-    background: #4cca8d;
     padding-left: 8px;
     border-radius: 4px;
     cursor: pointer;
+    opacity: 75%;
+    &:hover {
+        opacity: 100%;
+    }
 `;
 
 export const RemoveWrapperStyled = styled.div`
@@ -57,6 +65,7 @@ export const RepoContainerStyled = styled.div`
     background-color: #272736;
     border-radius: 4px;
     padding: 16px;
+    margin: 8px 0;
     display: flex;
     flex-direction: column;
     gap: 8px;

@@ -1,3 +1,16 @@
 export const BASE_URL = 'https://api.github.com';
 export const PER_PAGE = 100;
-export const AUTH_TOKEN = atob('Z2l0aHViX3BhdF8xMUJGNU1TWVkwY2ozR2sydVlaQkh4X2hHOWxad0M0MWg0RHNiR2FOZDlKcklmUlBLYm5CZDQ2Vlpzc0VTTXlSaTZQR1BEQ0NBWDBadzExYk1a');
+export const AUTH_TOKEN =
+    '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';
+export const COLORS = [
+    'green',
+    'red',
+    'blue',
+    'yellow',
+    'pink',
+    'orange',
+    'brown',
+    'gray',
+    'violet',
+    'black',
+];

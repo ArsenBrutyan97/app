@@ -34,19 +34,36 @@ export default function () {
 
                 return {
                     ...state,
-                    lastYearCommitDates: filteredDates,
+                    lastYearCommitDates: [
+                        ...state.lastYearCommitDates,
+                        filteredDates,
+                    ],
                 };
             }
-            case actionTypes.REMOVE_COMMIT: {
-                const { id } = action.payload;
-                const filteredRepos = state.repositories.filter(
-                    (repo) => repo.id !== id,
-                );
+            case actionTypes.SELECT_REPO: {
+                const { repo } = action.payload;
 
                 return {
                     ...state,
-                    repositories: filteredRepos,
-                    lastYearCommitDates: [],
+                    selectedRepositories: [...state.selectedRepositories, repo],
+                };
+            }
+            case actionTypes.UNSELECT_REPO: {
+                const { repoId } = action.payload;
+
+                const repoIdx = state.selectedRepositories
+                    .map((repo) => repo.id)
+                    .indexOf(repoId);
+
+                return {
+                    ...state,
+                    selectedRepositories: state.selectedRepositories.filter(
+                        (repo) => repo.id !== repoId,
+                    ),
+                    lastYearCommitDates: [
+                        ...state.lastYearCommitDates.slice(0, repoIdx),
+                        ...state.lastYearCommitDates.slice(repoIdx + 1),
+                    ],
                 };
             }
             default:

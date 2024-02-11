@@ -6,6 +6,11 @@ export const RepositoriesSelector = createSelector(
     (application) => application.repositories,
 );
 
+export const SelectedRepositoriesSelector = createSelector(
+    (state: RootState) => state.application,
+    (application) => application.selectedRepositories,
+);
+
 export const DateSelector = createSelector(
     (state: RootState) => state.application,
     (application) => application.lastYearCommitDates,

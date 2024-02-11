@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import { ICommits, IRepositories } from 'store/types';
+import { ICommits, IRepositories, ISelectedRepos } from 'store/types';
 
 export function initialize() {
     return {
@@ -21,16 +21,23 @@ export function setCommit(owner: string, repo: string) {
     };
 }
 
+export function selectRepo(repo: ISelectedRepos) {
+    return {
+        type: actions.SELECT_REPO,
+        payload: { repo },
+    };
+}
+
+export function unselectRepo(repoId: number) {
+    return {
+        type: actions.UNSELECT_REPO,
+        payload: { repoId },
+    };
+}
+
 export function loadCommits(commits: ICommits[]) {
     return {
         type: actions.LOAD_COMMITS,
         payload: { commits },
-    };
-}
-
-export function removeCommit(id: number) {
-    return {
-        type: actions.REMOVE_COMMIT,
-        payload: { id },
     };
 }

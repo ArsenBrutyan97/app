@@ -1,3 +1,5 @@
+import { COLORS } from './constants';
+
 export const isDateWithinLastYear = (dateString: string): boolean => {
     const inputDate = new Date(dateString);
 
@@ -53,4 +55,8 @@ export const getTimeAgo = (targetDate: Date): string => {
     } else {
         return `${seconds} ${seconds === 1 ? 'second' : 'seconds'} ago`;
     }
+};
+
+export const getColor = (key: number) => {
+    return COLORS[key % COLORS.length];
 };

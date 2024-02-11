@@ -1,6 +1,7 @@
 export type ApplicationState = {
     repositories: IRepositories[];
-    lastYearCommitDates: string[];
+    selectedRepositories: ISelectedRepos[];
+    lastYearCommitDates: string[][];
 };
 
 export type RootState = {
@@ -192,4 +193,41 @@ export interface ICommits {
             sha: string;
         },
     ];
+}
+
+export interface ISelectedRepos {
+    id: number;
+    name: string;
+    full_name: string;
+    watchers: number;
+    date: string;
+    org: string;
+}
+
+export interface IInfos {
+    avatar_url: string;
+    events_url: string;
+    followers_url: string;
+    following_url: string;
+    gists_url: string;
+    gravatar_id: string;
+    html_url: string;
+    idstring: number;
+    login: string;
+    node_id: string;
+    organizations_url: string;
+    received_events_url: string;
+    repos_url: string;
+    score: 1;
+    site_admin: boolean;
+    starred_url: string;
+    subscriptions_url: string;
+    type: string;
+    url: string;
+}
+
+export interface IOrgs {
+    incomplete_results: boolean;
+    total_count: number;
+    items: IInfos[];
 }
