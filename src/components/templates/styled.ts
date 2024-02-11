@@ -41,6 +41,7 @@ export const RepoWrapperStyled = styled.div`
     background: #4cca8d;
     padding-left: 8px;
     border-radius: 4px;
+    cursor: pointer;
 `;
 
 export const RemoveWrapperStyled = styled.div`
@@ -60,6 +61,7 @@ export const RepoContainerStyled = styled.div`
     flex-direction: column;
     gap: 8px;
     position: relative;
+    cursor: pointer;
 
     p {
         margin: 0;
@@ -72,9 +74,17 @@ export const RepoContainerStyled = styled.div`
     }
 `;
 
-export const RepoNameStyled = styled.p`
+export const RepoFullNameStyled = styled.div`
     font-size: 18px;
     font-weight: 700;
+    white-space: nowrap;
+`;
+
+export const OrgNameStyled = styled.span`
+    color: #bfbdd9;
+`;
+
+export const RepoNameStyled = styled.span`
     color: #ffffff;
 `;
 

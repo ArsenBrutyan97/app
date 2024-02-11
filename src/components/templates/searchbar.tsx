@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import Autocomplete from 'components/atoms/autocomplete';
 import {
     InitialTextStyled,
+    OrgNameStyled,
     RemoveWrapperStyled,
     RepoContainerStyled,
     RepoDetailsStyled,
+    RepoFullNameStyled,
     RepoNameStyled,
     RepoWrapperStyled,
     SearchBarWrapperStyled,
@@ -29,6 +31,7 @@ export const SearchBar = () => {
         name: '',
         watchers: 0,
         date: '',
+        org: '',
     });
 
     const onSelect = (repo: IRepositories) => {
@@ -38,11 +41,18 @@ export const SearchBar = () => {
             name: repo.name,
             watchers: repo.watchers,
             date: repo.updated_at,
+            org: repo.owner.login,
         });
     };
 
     const onRemove = () => {
         dispatch(removeCommit(repo.id));
+    };
+
+    const calcWatchers = (watchers: number) => {
+        return watchers >= 1000
+            ? Math.round(watchers / 100) / 10 + 'k'
+            : watchers;
     };
 
     return (
@@ -54,12 +64,15 @@ export const SearchBar = () => {
             {dates.length > 0 ? (
                 <RepoWrapperStyled>
                     <RepoContainerStyled>
-                        <RepoNameStyled>{repo.name}</RepoNameStyled>
+                        <RepoFullNameStyled>
+                            <OrgNameStyled>{repo.org} / </OrgNameStyled>
+                            <RepoNameStyled>{repo.name}</RepoNameStyled>
+                        </RepoFullNameStyled>
                         <RepoDetailsStyled>
                             <Star />
-                            <span>{repo.watchers}</span>
+                            <b> {calcWatchers(repo.watchers)}</b>
                             <UpdateStyled>
-                                {getTimeAgo(new Date(repo.date))}
+                                Updated {getTimeAgo(new Date(repo.date))}
                             </UpdateStyled>
                         </RepoDetailsStyled>
                         <RemoveWrapperStyled onClick={() => onRemove()}>

@@ -63,7 +63,7 @@ const Autocomplete: React.FC<IAutocomplete> = ({ suggestions, onSelect }) => {
                         <SuggestionItem
                             key={suggestion.id}
                             onClick={() => handleSuggestionClick(suggestion)}>
-                            {suggestion.name}
+                            {suggestion.owner.login} / <b>{suggestion.name}</b>
                         </SuggestionItem>
                     ))}
                 </SuggestionsList>

@@ -17,6 +17,8 @@ export const Statistics = () => {
         [dates],
     );
 
+    console.log(weeks, '/////');
+
     return (
         <GraphsWrapperStyled>
             <Line
@@ -35,7 +37,7 @@ export const Statistics = () => {
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Y: Commits X: Weeks',
+                            text: 'Y: Commits, X: Weeks',
                         },
                         legend: {
                             display: false,
