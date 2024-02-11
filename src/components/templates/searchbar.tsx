@@ -48,7 +48,7 @@ export const SearchBar = () => {
         dispatch(unselectRepo(repoId));
     };
 
-    const calcRepoWatchers = (watchers: number) => {
+    const renderWatchers = (watchers: number) => {
         return watchers >= 1000
             ? Math.round(watchers / 100) / 10 + 'k'
             : watchers;
@@ -78,7 +78,7 @@ export const SearchBar = () => {
                                 </RepoFullNameStyled>
                                 <RepoDetailsStyled>
                                     <Star />
-                                    <b> {calcRepoWatchers(repo.watchers)}</b>
+                                    <b> {renderWatchers(repo.watchers)}</b>
                                     <UpdateStyled>
                                         Updated{' '}
                                         {getTimeAgo(new Date(repo.date))}

@@ -2,7 +2,6 @@ import path from 'path';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import Dotenv from 'dotenv-webpack';
 
 const mainEntries: Record<string, string> = {
     app: path.resolve(__dirname, 'src/index.tsx'),
@@ -62,7 +61,6 @@ const commonConfig = {
         plugins: [new TsconfigPathsPlugin()],
     },
     plugins: [
-        new Dotenv(),
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             inject: true,

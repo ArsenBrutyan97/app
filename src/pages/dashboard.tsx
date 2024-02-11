@@ -9,12 +9,14 @@ import Loader from 'components/atoms/loader';
 export const Dashboard: React.FC = () => {
     const repos = useSelector(RepositoriesSelector);
 
-    return repos.length > 0 ? (
-        <DashboardLayout>
-            <Statistics />
-            <SearchBar />
-        </DashboardLayout>
-    ) : (
-        <Loader />
-    );
+    if (repos.length > 0) {
+        return (
+            <DashboardLayout>
+                <Statistics />
+                <SearchBar />
+            </DashboardLayout>
+        );
+    }
+
+    return <Loader />;
 };

@@ -60,3 +60,11 @@ export const getTimeAgo = (targetDate: Date): string => {
 export const getColor = (key: number) => {
     return COLORS[key % COLORS.length];
 };
+
+export const dateCalculation = (week: number) => {
+    const currentDate = new Date();
+    const day = currentDate.getDay();
+    const dateDiff = currentDate.getDate() - day + (day == 0 ? -6 : 1);
+    const date = new Date(currentDate.setDate(dateDiff - week * 7));
+    return `Week of ${date.toLocaleDateString('en-GB')}`;
+};

@@ -51,7 +51,7 @@ export default function () {
             case actionTypes.UNSELECT_REPO: {
                 const { repoId } = action.payload;
 
-                const repoIdx = state.selectedRepositories
+                const index = state.selectedRepositories
                     .map((repo) => repo.id)
                     .indexOf(repoId);
 
@@ -61,8 +61,8 @@ export default function () {
                         (repo) => repo.id !== repoId,
                     ),
                     lastYearCommitDates: [
-                        ...state.lastYearCommitDates.slice(0, repoIdx),
-                        ...state.lastYearCommitDates.slice(repoIdx + 1),
+                        ...state.lastYearCommitDates.slice(0, index),
+                        ...state.lastYearCommitDates.slice(index + 1),
                     ],
                 };
             }
