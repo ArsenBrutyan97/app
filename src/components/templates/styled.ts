@@ -65,7 +65,7 @@ export const RepoContainerStyled = styled.div`
     background-color: #272736;
     border-radius: 4px;
     padding: 16px;
-    margin: 8px 0;
+    margin: 16px 0;
     display: flex;
     flex-direction: column;
     gap: 8px;

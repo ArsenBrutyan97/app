@@ -22,6 +22,19 @@ export const Statistics = () => {
         [dates],
     );
 
+    const calcDate = (week: number) => {
+        const currentDate = new Date();
+        const day = currentDate.getDay();
+        const dateDiff = currentDate.getDate() - day + (day == 0 ? -6 : 1);
+        const date = new Date(currentDate.setDate(dateDiff - week * 7));
+        return `Week of ${date.toLocaleDateString('en-GB')}`;
+    };
+
+    const maxValue = Math.max(
+        1,
+        Math.max(...weeks.map((week) => Math.max(...week))),
+    );
+
     return (
         <GraphsWrapperStyled>
             {weeks.length > 0 && (
@@ -29,7 +42,14 @@ export const Statistics = () => {
                     colors={COLORS}
                     xAxis={weeks.map((week) => ({
                         data: week.map((_, key) => key),
+                        valueFormatter: (value) =>
+                            calcDate(week.length - 1 - value),
                     }))}
+                    yAxis={[
+                        {
+                            max: maxValue,
+                        },
+                    ]}
                     series={weeks.map((week, key) => ({
                         label: selectedRepos[key].full_name,
                         data: week,
